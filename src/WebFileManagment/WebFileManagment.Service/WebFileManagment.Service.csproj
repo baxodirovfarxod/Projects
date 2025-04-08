@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebFileManagment.StorageBroker\WebFileManagment.StorageBroker.csproj" />
+  </ItemGroup>
+
 </Project>
