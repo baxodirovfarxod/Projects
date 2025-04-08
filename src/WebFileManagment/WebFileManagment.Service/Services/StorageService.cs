@@ -49,6 +49,6 @@ public class StorageService : IStorageService
 
     public async Task UploadFileAsync(string filePath, Stream stream)
     {
-        return await storageBrokerService.UploadFileAsync(filePath, stream);
+        await storageBrokerService.UploadFileAsync(filePath, stream);
     }
 }
