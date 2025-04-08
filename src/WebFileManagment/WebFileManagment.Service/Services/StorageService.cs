@@ -1,45 +1,54 @@
 ﻿
+using WebFileManagment.StorageBroker.Services;
+
 namespace WebFileManagment.Service.Services;
 
 public class StorageService : IStorageService
 {
-    public Task CopyFileChunkAsync(string filePath, string newFileName)
+    public readonly IStorageBrokerService storageBrokerService;
+
+    public StorageService(IStorageBrokerService storageBrokerService)
     {
-        throw new NotImplementedException();
+        this.storageBrokerService = storageBrokerService;
     }
 
-    public Task CreateDirectoryAsync(string directoryPath)
+    public async Task CopyFileChunkAsync(string filePath, string newFileName)
     {
-        throw new NotImplementedException();
+        await storageBrokerService.CopyFileChunkAsync(filePath, newFileName);
     }
 
-    public Task DeleteDirectoryAsync(string directoryPath)
+    public async Task CreateDirectoryAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        await storageBrokerService.CreateDirectoryAsync(directoryPath);
     }
 
-    public Task DeleteFileAsync(string filePath)
+    public async Task DeleteDirectoryAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        await storageBrokerService.DeleteDirectoryAsync(directoryPath);
     }
 
-    public Task<Stream> DownloadFileAsync(string filePath)
+    public async Task DeleteFileAsync(string filePath)
     {
-        throw new NotImplementedException();
+        await storageBrokerService.DeleteFileAsync(filePath);
     }
 
-    public Task<Stream> DownloadFolderAsZipAsync(string directoryPath)
+    public async Task<Stream> DownloadFileAsync(string filePath)
     {
-        throw new NotImplementedException();
+       return await storageBrokerService.DownloadFileAsync(filePath);
     }
 
-    public Task<List<string>> GetAllFilesAndDirectoriesAsync(string directoryPath)
+    public async Task<Stream> DownloadFolderAsZipAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        return await storageBrokerService.DownloadFolderAsZipAsync(directoryPath);  
     }
 
-    public Task UploadFileAsync(string filePath, Stream stream)
+    public async Task<List<string>> GetAllFilesAndDirectoriesAsync(string directoryPath)
     {
-        throw new NotImplementedException();
+        return await storageBrokerService.GetAllFilesAndDirectoriesAsync(directoryPath);
+    }
+
+    public async Task UploadFileAsync(string filePath, Stream stream)
+    {
+        return await storageBrokerService.UploadFileAsync(filePath, stream);
     }
 }
