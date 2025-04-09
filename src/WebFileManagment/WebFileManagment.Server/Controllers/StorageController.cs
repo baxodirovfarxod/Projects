@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebFileManagment.Service.Services;
 
 namespace WebFileManagment.Server.Controllers
 {
@@ -6,6 +7,12 @@ namespace WebFileManagment.Server.Controllers
     [ApiController]
     public class StorageController : ControllerBase
     {
+        private readonly IStorageService storageService;
+        public StorageController(IStorageService storageService)
+        {
+            this.storageService = storageService;
+        }
+
         [HttpPost("uploadFile")]
         public async Task UploadFile(IFormFile file, string? directoryPath)
         {
@@ -44,14 +51,14 @@ namespace WebFileManagment.Server.Controllers
 
         [HttpDelete("deleteFile")]
         public async Task DeleteFile(string filePath)
-        { 
-            throw new NotImplementedException(); 
+        {
+            await storageService.DeleteFileAsync(filePath);
         }
 
         [HttpDelete("deleteDirectory")]
         public async Task DeleteDirectory(string directoryPath)
-        { 
-            throw new NotImplementedException();
+        {
+            await storageService.DeleteDirectoryAsync(directoryPath);
         }
     }
 }

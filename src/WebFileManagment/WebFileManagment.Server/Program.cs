@@ -1,4 +1,6 @@
 
+using WebFileManagment.Server.Configurations;
+
 namespace WebFileManagment.Server
 {
     public class Program
@@ -13,6 +15,7 @@ namespace WebFileManagment.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Configurations();
 
             var app = builder.Build();
 

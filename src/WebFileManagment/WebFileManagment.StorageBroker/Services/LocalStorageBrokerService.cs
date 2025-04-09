@@ -83,7 +83,6 @@ namespace WebFileManagment.StorageBroker.Services
                 }
                 File.Delete(filePath);
             });
-
         }
 
         public async Task<Stream> DownloadFileAsync(string filePath)
