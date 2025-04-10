@@ -40,7 +40,10 @@ namespace WebFileManagment.Server.Controllers
         [HttpGet("downloadFile")]
         public async Task<FileStreamResult> DownloadFile(string filePath)
         {
-            throw new NotImplementedException();
+            var stream = await storageService.DownloadFileAsync(filePath);
+            var streamResult = new FileStreamResult(stream, "application/octet-stream");
+
+            return streamResult;
         }
 
         [HttpGet("downloadFolderAsZip")]
