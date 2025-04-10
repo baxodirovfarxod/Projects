@@ -28,7 +28,7 @@ namespace WebFileManagment.Server.Controllers
         [HttpPost("createFolder")]
         public async Task CreateFolder(string folderPath)
         {
-            throw new NotImplementedException();
+            await storageService.CreateDirectoryAsync(folderPath);
         }
 
         [HttpGet("getAll")]
